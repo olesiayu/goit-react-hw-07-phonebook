@@ -6,7 +6,6 @@ import ListItem from 'components/ListItem/ListItem';
 const ContactList = () => {
   const { data: contacts } = useFetchContactsQuery();
   const filter = useSelector(state => state.filter.filter);
-  // const contacts = useSelector(state => state.contacts.items);
 
   const getVisibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();

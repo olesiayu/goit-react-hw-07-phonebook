@@ -1,13 +1,11 @@
 import React from 'react';
 import { useDeleteContactMutation } from 'redux/contactsSlice';
-import { useDispatch } from 'react-redux';
-// import { deleteContact } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import s from './ListItem.module.css';
 
 const ListItem = ({ name, number, id }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
-  // const dispatch = useDispatch();
+
   return (
     <li className={s.item}>
       <p className={s.text}>
