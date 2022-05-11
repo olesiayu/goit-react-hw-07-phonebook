@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import ListItem from 'components/ListItem/ListItem';
 
 const ContactList = () => {
-  const { data: contacts } = useFetchContactsQuery();
+  const { data: contacts, isSuccess } = useFetchContactsQuery();
   const filter = useSelector(state => state.filter.filter);
 
   const getVisibleContacts = () => {
@@ -16,14 +16,15 @@ const ContactList = () => {
     }
     return [];
   };
-
-  return (
-    <ul>
-      {getVisibleContacts().map(({ id, name, phone }) => (
-        <ListItem key={id} number={phone} name={name} id={id} />
-      ))}
-    </ul>
-  );
+  if (isSuccess) {
+    return (
+      <ul>
+        {getVisibleContacts().map(({ id, name, phone }) => (
+          <ListItem key={id} number={phone} name={name} id={id} />
+        ))}
+      </ul>
+    );
+  }
 };
 
 export default ContactList;

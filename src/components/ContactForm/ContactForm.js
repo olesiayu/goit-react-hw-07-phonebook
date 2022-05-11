@@ -29,22 +29,25 @@ export default function ContactForm() {
     }
   };
 
-  const formSubmitHandler = (name, number) => {
-    const sameName = contacts.some(
-      contacts => contacts.name.toLowerCase() === name.toLowerCase()
-    );
-
-    if (sameName) {
-      alert(`${name} is already in contacts`);
-      return;
+  const formSubmitHandler = () => {
+    if (contacts) {
+      const sameName = contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      );
+      if (sameName) {
+        alert(`${name} is already in contacts`);
+        reset();
+        return;
+      }
     }
-
     addContact({ name, phone: number });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    formSubmitHandler(name, number);
+
+    formSubmitHandler();
+
     reset();
   };
 
